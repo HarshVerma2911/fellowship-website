@@ -1,108 +1,98 @@
+const PROGRAM_LINKS = {
+  empower: "https://adoreglobal.org/webinar",      // 🔗 replace later
+  softSkills: "https://adoreglobal.org/e-session",   // 🔗 replace later
+  networking: "https://adoreglobal.org/sunshine",   // 🔗 replace later
+  volunteerism: "https://adoreglobal.org/youngleader", // 🔗 replace later
+};
+
 const Programs = () => {
   return (
-    <section className="bg-white py-20">
+    <section id="programs" className="bg-white py-24">
       <div className="max-w-7xl mx-auto px-6">
-
         {/* Section Header */}
-        <div className="text-center mb-14">
-          <h2 className="text-3xl sm:text-4xl font-extrabold text-gray-900">
+        <div className="text-center mb-16">
+          <h2 className="text-4xl font-extrabold text-gray-900">
             Our Programs
           </h2>
         </div>
 
-        {/* Programs Cards */}
-        <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+        {/* Cards */}
+        <div className="grid gap-10 md:grid-cols-2">
+          {/* Card 1 */}
+          <a
+            href={PROGRAM_LINKS.empower}
+            className="group block bg-[#FFF6EE] rounded-3xl p-10
+            transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl"
+          >
+            <img src="/icons/empowerment.png" className="w-20 mb-6" />
+            <h3 className="text-2xl font-bold text-gray-900 mb-3">
+              Empower Youth
+            </h3>
+            <p className="text-gray-600 leading-relaxed mb-6">
+              Build confidence, leadership, and self-belief by empowering young
+              minds to take initiative and create impact.
+            </p>
+            <span className="font-semibold text-orange-600 group-hover:underline">
+              Click here to see the program →
+            </span>
+          </a>
 
-          {/* Program 1 */}
-          <div className="group flex items-center gap-6 bg-[#FFF6EE] rounded-2xl p-6
-            transition-all duration-300 ease-out
-            hover:-translate-y-2 hover:scale-[1.02] hover:shadow-xl">
+          {/* Card 2 */}
+          <a
+            href={PROGRAM_LINKS.softSkills}
+            className="group block bg-[#F4F1FF] rounded-3xl p-10
+            transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl"
+          >
+            <img src="/icons/soft-skills.png" className="w-20 mb-6" />
+            <h3 className="text-2xl font-bold text-gray-900 mb-3">
+              Develop Soft Skills
+            </h3>
+            <p className="text-gray-600 leading-relaxed mb-6">
+              Enhance communication, teamwork, emotional intelligence, and
+              problem-solving through hands-on experiences.
+            </p>
+            <span className="font-semibold text-purple-600 group-hover:underline">
+              Click here to see the program →
+            </span>
+          </a>
 
-            {/* Icon */}
-            <div className="flex-shrink-0 transition-transform duration-300 group-hover:scale-110">
-              <img
-                src="/icons/palette.png"
-                alt="Program 4 to 6"
-                className="w-16 h-16"
-              />
-            </div>
+          {/* Card 3 */}
+          <a
+            href={PROGRAM_LINKS.networking}
+            className="group block bg-[#EFF6FF] rounded-3xl p-10
+            transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl"
+          >
+            <img src="/icons/networking.png" className="w-20 mb-6" />
+            <h3 className="text-2xl font-bold text-gray-900 mb-3">
+              Networking
+            </h3>
+            <p className="text-gray-600 leading-relaxed mb-6">
+              Connect with mentors, peers, and leaders to build meaningful
+              relationships and long-term collaboration.
+            </p>
+            <span className="font-semibold text-blue-600 group-hover:underline">
+              Click here to see the program →
+            </span>
+          </a>
 
-            {/* Content */}
-            <div>
-              <h3 className="font-bold text-lg text-gray-900">
-                Ages 4–6 years
-              </h3>
-              <p className="mt-2 text-gray-600 text-sm leading-relaxed">
-                Fun activities, stories, and creative play to develop motor
-                skills, imagination, and self-expression.
-              </p>
-
-              <button className="mt-3 text-orange-500 text-sm font-semibold cursor-pointer">
-                Choose a program →
-              </button>
-            </div>
-          </div>
-
-          {/* Program 2 */}
-          <div className="group flex items-center gap-6 bg-[#F4F1FF] rounded-2xl p-6
-            transition-all duration-300 ease-out
-            hover:-translate-y-2 hover:scale-[1.02] hover:shadow-xl">
-
-            {/* Icon */}
-            <div className="flex-shrink-0 transition-transform duration-300 group-hover:scale-110">
-              <img
-                src="/icons/pencils.png"
-                alt="Program 7 to 9"
-                className="w-16 h-16"
-              />
-            </div>
-
-            {/* Content */}
-            <div>
-              <h3 className="font-bold text-lg text-gray-900">
-                Ages 7–9 years
-              </h3>
-              <p className="mt-2 text-gray-600 text-sm leading-relaxed">
-                Interactive learning, group activities, and value-based
-                discussions that build confidence and friendships.
-              </p>
-
-              <button className="mt-3 text-orange-500 text-sm font-semibold cursor-pointer">
-                Choose a program →
-              </button>
-            </div>
-          </div>
-
-          {/* Program 3 */}
-          <div className="group flex items-center gap-6 bg-[#EFF6FF] rounded-2xl p-6
-            transition-all duration-300 ease-out
-            hover:-translate-y-2 hover:scale-[1.02] hover:shadow-xl">
-
-            {/* Icon */}
-            <div className="flex-shrink-0 transition-transform duration-300 group-hover:scale-110">
-              <img
-                src="/icons/book.png"
-                alt="Program 10 to 12"
-                className="w-16 h-16"
-              />
-            </div>
-
-            {/* Content */}
-            <div>
-              <h3 className="font-bold text-lg text-gray-900">
-                Ages 10–12 years
-              </h3>
-              <p className="mt-2 text-gray-600 text-sm leading-relaxed">
-                Leadership activities, teamwork, and community projects that
-                encourage responsibility and deeper understanding.
-              </p>
-
-              <button className="mt-3 text-orange-500 text-sm font-semibold cursor-pointer">
-                Choose a program →
-              </button>
-            </div>
-          </div>
-
+          {/* Card 4 */}
+          <a
+            href={PROGRAM_LINKS.volunteerism}
+            className="group block bg-[#ECFEF3] rounded-3xl p-10
+            transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl"
+          >
+            <img src="/icons/volunteerism.png" className="w-20 mb-6" />
+            <h3 className="text-2xl font-bold text-gray-900 mb-3">
+              Encourage Volunteerism
+            </h3>
+            <p className="text-gray-600 leading-relaxed mb-6">
+              Inspire a culture of service and social responsibility through
+              impactful volunteering opportunities.
+            </p>
+            <span className="font-semibold text-green-600 group-hover:underline">
+              Click here to see the program →
+            </span>
+          </a>
         </div>
       </div>
     </section>

@@ -1,9 +1,11 @@
 @import "tailwindcss";
 
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap');
-
 @theme {
   --font-sans: "Montserrat", ui-sans-serif, system-ui;
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 @keyframes fadeIn {
@@ -11,6 +13,7 @@
     opacity: 0;
     transform: translateY(20px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);

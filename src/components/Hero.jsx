@@ -3,35 +3,42 @@ import { useState, useEffect } from "react";
 const slides = [
   {
     bg: "/hero/hero-3.jpg",
-    title: "Growing together in",
-    highlight: "faith & fun",
+    title: "Growing together.",
+    highlight: "Empowering Youth",
     description:
-      "Interactive activities designed to help children express, connect, and grow with confidence.",
+      "Interactive activities designed to empower and nurture young minds.",
     accent: "text-orange-400",
     text: "text-white",
-    button: "See Activities",
+    button: "Download Brochure",
+    action: "download",
   },
   {
     bg: "/hero/hero-2.jpg",
-    title: "Learning through",
-    highlight: "play & teamwork",
-    description:
-      "Sports, games, and group activities that build confidence and friendships.",
+    title: "Learning and",
+    highlight: "inspiring change",
+    description: "Group activities that inspire change among children.",
     accent: "text-yellow-300",
     text: "text-white",
     button: "Explore Programs",
+    action: "scroll",
   },
   {
     bg: "/hero/hero-1.jpg",
     title: "Building values for",
-    highlight: "a brighter future",
+    highlight: "future leaders",
     description:
       "Helping children grow emotionally, socially, and spiritually.",
     accent: "text-green-300",
     text: "text-white",
-    button: "Join Fellowship",
+    button: "Become a fellow",
+    action: "external",
   },
 ];
+
+const FORM_LINK =
+  "https://docs.google.com/forms/d/e/1FAIpQLSemiFqIUO1AWyw2fbCr0uepgPAD559po_ZOj-Vs9Z5zYSI2HQ/viewform";
+
+const BROCHURE_LINK = "/brochure/fellowship-brochure.pdf";
 
 export default function Hero() {
   const [current, setCurrent] = useState(0);
@@ -43,6 +50,20 @@ export default function Hero() {
 
     return () => clearInterval(timer);
   }, []);
+
+  const handleButtonClick = () => {
+    const action = slides[current].action;
+
+    if (action === "scroll") {
+      document.getElementById("programs")?.scrollIntoView({
+        behavior: "smooth",
+      });
+    }
+
+    if (action === "external") {
+      window.open(FORM_LINK, "_blank", "noopener,noreferrer");
+    }
+  };
 
   return (
     <section className="relative h-[90vh] overflow-hidden">
@@ -56,6 +77,7 @@ export default function Hero() {
           style={{ backgroundImage: `url(${slide.bg})` }}
         />
       ))}
+
       <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/40 to-black/10 z-10" />
 
       {/* Content */}
@@ -71,11 +93,27 @@ export default function Hero() {
             </span>
           </h1>
 
-          <p className="text-white/90 text-lg">{slides[current].description}</p>
+          <p className="text-white/90 text-lg">
+            {slides[current].description}
+          </p>
 
-          <button className="mt-4 bg-orange-500 hover:bg-orange-600 text-white px-6 py-3 rounded-full font-semibold transition hover:-translate-y-0.5 hover:shadow-lg">
-            {slides[current].button}
-          </button>
+          {/* ✅ CORRECT CONDITIONAL RENDERING */}
+          {slides[current].action === "download" ? (
+            <a
+              href={BROCHURE_LINK}
+              download="Fellowship-Brochure.pdf"
+              className="inline-block mt-4 bg-orange-500 hover:bg-orange-600 text-white px-6 py-3 rounded-full font-semibold transition hover:-translate-y-0.5 hover:shadow-lg"
+            >
+              {slides[current].button}
+            </a>
+          ) : (
+            <button
+              onClick={handleButtonClick}
+              className="mt-4 bg-orange-500 hover:bg-orange-600 text-white px-6 py-3 rounded-full font-semibold transition hover:-translate-y-0.5 hover:shadow-lg"
+            >
+              {slides[current].button}
+            </button>
+          )}
         </div>
       </div>
 

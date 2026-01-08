@@ -1,6 +1,6 @@
 const About = () => {
   return (
-    <section className="relative bg-indigo-500 py-20 overflow-hidden">
+    <section className="relative bg-indigo-900 py-20 overflow-hidden">
       {/* Background pattern placeholder (VERY subtle, can enhance later) */}
       <div
         className="absolute inset-0 opacity-[0.03]"
@@ -28,7 +28,7 @@ const About = () => {
         <div className="text-white">
           <h2 className="text-3xl sm:text-4xl font-bold leading-tight mb-4">
             Why Our Fellowship is the <br className="hidden sm:block" />
-            Right Place for Your Child
+            Right Place 
           </h2>
 
           <p className="text-white/80 max-w-xl mb-8">
