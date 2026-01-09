@@ -9,8 +9,6 @@ const slides = [
       "Interactive activities designed to empower and nurture young minds.",
     accent: "text-orange-400",
     text: "text-white",
-    button: "Download Brochure",
-    action: "download",
   },
   {
     bg: "/hero/hero-2.jpg",
@@ -19,8 +17,6 @@ const slides = [
     description: "Group activities that inspire change among children.",
     accent: "text-yellow-300",
     text: "text-white",
-    button: "Explore Programs",
-    action: "scroll",
   },
   {
     bg: "/hero/hero-1.jpg",
@@ -30,8 +26,6 @@ const slides = [
       "Helping children grow emotionally, socially, and spiritually.",
     accent: "text-green-300",
     text: "text-white",
-    button: "Become a fellow",
-    action: "external",
   },
 ];
 
@@ -51,22 +45,8 @@ export default function Hero() {
     return () => clearInterval(timer);
   }, []);
 
-  const handleButtonClick = () => {
-    const action = slides[current].action;
-
-    if (action === "scroll") {
-      document.getElementById("programs")?.scrollIntoView({
-        behavior: "smooth",
-      });
-    }
-
-    if (action === "external") {
-      window.open(FORM_LINK, "_blank", "noopener,noreferrer");
-    }
-  };
-
   return (
-    <section className="relative h-[90vh] overflow-hidden">
+    <section className="relative h-[78vh] md:h-[82vh] lg:h-[85vh] overflow-hidden">
       {/* Background */}
       {slides.map((slide, index) => (
         <div
@@ -97,23 +77,25 @@ export default function Hero() {
             {slides[current].description}
           </p>
 
-          {/* ✅ CORRECT CONDITIONAL RENDERING */}
-          {slides[current].action === "download" ? (
+          {/* ✅ BOTH BUTTONS ALWAYS VISIBLE */}
+          <div className="flex flex-col sm:flex-row gap-4 mt-6 justify-center md:justify-start">
+            <a
+              href={FORM_LINK}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="bg-orange-500 hover:bg-orange-600 text-white px-6 py-3 rounded-full font-semibold transition hover:-translate-y-0.5 hover:shadow-lg text-center"
+            >
+              Become a Fellow
+            </a>
+
             <a
               href={BROCHURE_LINK}
               download="Fellowship-Brochure.pdf"
-              className="inline-block mt-4 bg-orange-500 hover:bg-orange-600 text-white px-6 py-3 rounded-full font-semibold transition hover:-translate-y-0.5 hover:shadow-lg"
+              className="bg-white/90 hover:bg-white text-gray-900 px-6 py-3 rounded-full font-semibold transition hover:-translate-y-0.5 hover:shadow-lg text-center"
             >
-              {slides[current].button}
+              Download Brochure
             </a>
-          ) : (
-            <button
-              onClick={handleButtonClick}
-              className="mt-4 bg-orange-500 hover:bg-orange-600 text-white px-6 py-3 rounded-full font-semibold transition hover:-translate-y-0.5 hover:shadow-lg"
-            >
-              {slides[current].button}
-            </button>
-          )}
+          </div>
         </div>
       </div>
 

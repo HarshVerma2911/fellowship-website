@@ -1,22 +1,25 @@
 import Hero from "../components/Hero";
-import Programs from "../components/Programs";
-import About from "../components/About";
+import AboutFellowship from "../components/AboutFellowship";
+import Objectives from "../components/Objectives";
+// import About from "../components/About";
 import Events from "../components/Events";
 import Contact from "../components/Contact";
 
 const Home = () => {
   return (
     <>
-
       <section id="home">
         <Hero />
       </section>
 
-      <section id="programs">
-        <Programs />
+      {/* 👇 NEW SECTION BELOW HERO */}
+      <AboutFellowship />
+
+      <section id="objectives">
+        <Objectives />
       </section>
 
-      <About />
+      {/* <About /> */}
 
       <section id="events">
         <Events />

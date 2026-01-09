@@ -5,11 +5,8 @@ import { Link, NavLink, useLocation } from "react-router-dom";
 const FORM_LINK =
   "https://docs.google.com/forms/d/e/1FAIpQLSemiFqIUO1AWyw2fbCr0uepgPAD559po_ZOj-Vs9Z5zYSI2HQ/viewform";
 
-const ABOUT_ADORE_LINK = "https://adoreglobal.org/about";
-
 const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
-  const [dropdown, setDropdown] = useState(false);
   const location = useLocation();
 
   return (
@@ -39,63 +36,12 @@ const Navbar = () => {
             </NavLink>
           </li>
 
-          {/* About Dropdown */}
-          <li
-            className="relative"
-            onMouseEnter={() => setDropdown(true)}
-            onMouseLeave={() => setDropdown(false)}
-          >
-            <button className="flex items-center gap-1 text-gray-700 hover:text-purple-500">
-              About Us ▾
-            </button>
-
-            <AnimatePresence>
-              {dropdown && (
-                <motion.ul
-                  initial={{ opacity: 0, y: -10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -10 }}
-                  className="absolute top-10 bg-white shadow-xl rounded-xl py-3 w-52"
-                >
-                  <li>
-                    <a
-                      href={ABOUT_ADORE_LINK}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="block px-4 py-2 hover:bg-gray-100"
-                    >
-                      About ADORE
-                    </a>
-                  </li>
-
-                  <li>
-                    <NavLink
-                      to="/adore-fellowship"
-                      className={({ isActive }) =>
-                        `block px-4 py-2 hover:bg-gray-100 ${
-                          isActive ? "text-purple-500 font-semibold" : ""
-                        }`
-                      }
-                    >
-                      ADORE Fellowship
-                    </NavLink>
-                  </li>
-                </motion.ul>
-              )}
-            </AnimatePresence>
-          </li>
-
           {/* Scroll links only work on Home */}
           {location.pathname === "/" && (
             <>
               <li>
-                <a href="#programs" className="hover:text-blue-500">
-                  Programs
-                </a>
-              </li>
-              <li>
                 <a href="#events" className="hover:text-green-500">
-                  Events
+                  Activities
                 </a>
               </li>
               <li>
@@ -150,28 +96,10 @@ const Navbar = () => {
                 Home
               </NavLink>
 
-              <a
-                href={ABOUT_ADORE_LINK}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                About Adore
-              </a>
-
-              <NavLink
-                to="/adore-fellowship"
-                onClick={() => setMenuOpen(false)}
-              >
-                ADORE Fellowship
-              </NavLink>
-
               {location.pathname === "/" && (
                 <>
-                  <a href="#programs" onClick={() => setMenuOpen(false)}>
-                    Programs
-                  </a>
                   <a href="#events" onClick={() => setMenuOpen(false)}>
-                    Events
+                    Activities
                   </a>
                   <a href="#contact" onClick={() => setMenuOpen(false)}>
                     Contact

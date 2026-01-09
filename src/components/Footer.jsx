@@ -65,12 +65,6 @@ const Footer = () => {
               icon={<FaLinkedin />}
               label="LinkedIn"
             />
-            <SocialIcon
-              href="https://x.com/AdoreEarth?t=kvxEaXb3QtcK41czb9itsA&s=08"
-              color="text-black"
-              icon={<FaXTwitter />}
-              label="X"
-            />
           </div>
         </div>
 
