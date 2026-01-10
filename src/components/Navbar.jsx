@@ -1,19 +1,75 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Link, NavLink, useLocation } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 const FORM_LINK =
   "https://docs.google.com/forms/d/e/1FAIpQLSemiFqIUO1AWyw2fbCr0uepgPAD559po_ZOj-Vs9Z5zYSI2HQ/viewform";
 
+const SECTIONS = [
+  { id: "home", label: "Home", color: "text-orange-500" },
+  { id: "objectives", label: "Objectives", color: "text-indigo-500" },
+  { id: "apply", label: "Who Can Apply", color: "text-blue-500" },
+  { id: "events", label: "Activities", color: "text-green-500" },
+  { id: "benefits", label: "Benefits", color: "text-purple-500" },
+  { id: "contact", label: "Contact", color: "text-pink-500" },
+];
+
 const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [activeSection, setActiveSection] = useState("home");
   const location = useLocation();
+
+  /* ------------------------------
+     Scroll Spy (ALL SECTIONS)
+  ------------------------------ */
+  useEffect(() => {
+    if (location.pathname !== "/") return;
+
+    const observers = [];
+
+    SECTIONS.forEach(({ id }) => {
+      const section = document.getElementById(id);
+      if (!section) return;
+
+      const observer = new IntersectionObserver(
+        ([entry]) => {
+          if (entry.isIntersecting) {
+            setActiveSection(id);
+          }
+        },
+        {
+          threshold: id === "home" ? 0.6 : 0.35,
+        }
+      );
+
+      observer.observe(section);
+      observers.push(observer);
+    });
+
+    return () => observers.forEach((obs) => obs.disconnect());
+  }, [location.pathname]);
+
+  /* ------------------------------
+     Smooth Scroll
+  ------------------------------ */
+  const scrollTo = (id) => {
+    const section = document.getElementById(id);
+    section?.scrollIntoView({ behavior: "smooth" });
+    setMenuOpen(false);
+  };
+
+  const getLinkClass = (id, color) =>
+    `cursor-pointer transition ${
+      activeSection === id
+        ? color
+        : "text-gray-700 hover:text-orange-500"
+    }`;
 
   return (
     <header className="sticky top-0 z-50 bg-white shadow-sm">
       <nav className="max-w-7xl mx-auto px-4 sm:px-6 py-3 sm:py-4 flex items-center justify-between">
         {/* Logo */}
-        <Link to="https://www.adoreglobal.org/#" className="flex-shrink-0">
+        <Link to="/" onClick={() => scrollTo("home")} className="flex-shrink-0">
           <img
             src="/images/logo.png"
             alt="ADORE Logo"
@@ -23,34 +79,16 @@ const Navbar = () => {
 
         {/* Desktop Menu */}
         <ul className="hidden lg:flex items-center gap-8 font-medium text-sm xl:text-base">
-          <li>
-            <NavLink
-              to=""
-              className={({ isActive }) =>
-                isActive
-                  ? "text-orange-500"
-                  : "text-gray-700 hover:text-orange-500"
-              }
-            >
-              Home
-            </NavLink>
-          </li>
-
-          {/* Scroll links only work on Home */}
-          {location.pathname === "/" && (
-            <>
-              <li>
-                <a href="#events" className="hover:text-green-500">
-                  Activities
-                </a>
+          {location.pathname === "/" &&
+            SECTIONS.map(({ id, label, color }) => (
+              <li
+                key={id}
+                className={getLinkClass(id, color)}
+                onClick={() => scrollTo(id)}
+              >
+                {label}
               </li>
-              <li>
-                <a href="#contact" className="hover:text-pink-500">
-                  Contact
-                </a>
-              </li>
-            </>
-          )}
+            ))}
         </ul>
 
         {/* Desktop CTA */}
@@ -92,20 +130,17 @@ const Navbar = () => {
             </button>
 
             <ul className="flex flex-col gap-6 text-lg">
-              <NavLink to="/" onClick={() => setMenuOpen(false)}>
-                Home
-              </NavLink>
-
-              {location.pathname === "/" && (
-                <>
-                  <a href="#events" onClick={() => setMenuOpen(false)}>
-                    Activities
-                  </a>
-                  <a href="#contact" onClick={() => setMenuOpen(false)}>
-                    Contact
-                  </a>
-                </>
-              )}
+              {SECTIONS.map(({ id, label, color }) => (
+                <li
+                  key={id}
+                  className={`cursor-pointer ${
+                    activeSection === id ? color : ""
+                  }`}
+                  onClick={() => scrollTo(id)}
+                >
+                  {label}
+                </li>
+              ))}
 
               <a
                 href={FORM_LINK}

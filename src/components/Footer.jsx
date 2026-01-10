@@ -102,14 +102,14 @@ const Footer = () => {
           <ul className="space-y-4 text-sm text-white/80">
             <li className="flex items-center gap-3">
               📞
-              <a href="tel:+919876543210" className="hover:underline">
+              <a href="tel:+91-7980460134" className="hover:underline">
                 +91 79804 60134
               </a>
             </li>
             <li className="flex items-center gap-3">
               ✉️
               <a
-                href="mailto:hello@adoreglobal.org"
+                href="mailto:info@adoreglobal.org"
                 className="hover:underline"
               >
                 info@adoreglobal.org

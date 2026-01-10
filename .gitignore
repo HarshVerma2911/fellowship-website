@@ -22,3 +22,11 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# PDFs
+*.pdf
+
+# Logos / images
+logo.png
+logo2.jpeg
+fellowship-about.jpg
